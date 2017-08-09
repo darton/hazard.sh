@@ -1,7 +1,7 @@
 Skrypt napisany dla programu Bind na dystrybucji Centos 7
 
 #Instalacja
-Zapisujemy skrypt pod dowolna nazwą np hazard.sh w katalogu np /opt/hazard (który okresłimy w skrypcie pod zmienną $scriptdir)
+Zapisujemy skrypt pod dowolna nazwą np hazard.sh w katalogu np /opt/hazard (który okreslimy w skrypcie pod zmienną $scriptdir)
 
 Do pliku /etc/named.conf dopisujemy linię:
 
@@ -11,9 +11,9 @@ Skrypt należy zainicjować:
 
 /opt/hazard/hazard.sh init
 
-Wtedy skrypt utworzy odpowiednie pliki konfiguracyjne dla programu bind i na własne potrzeby oraz pobierze wykaz domen ze strony Ministerstwa Finansów.
+Wtedy skrypt utworzy odpowiednie pliki konfiguracyjne dla programu bind i na własne potrzeby oraz pobierze wykaz domen ze strony www Ministerstwa Finansów.
 
-Skrypt powinno się uruchamiać w cron np co dwie godziny z parametrem "reload":
+Skrypt powinno się uruchamiać w cron np. co dwie godziny z parametrem "reload":
 0 */2 * * * root bash /opt/hazard/hazard.sh reload
 
 Skrypt pobierze wtedy nową listę domen i porówna z tą, którą już posiada. jeśli nie będzie różnic skrypt zakończy działanie.
