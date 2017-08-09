@@ -1,7 +1,6 @@
 Skrypt napisany dla programu Bind na dystrybucji Centos 7
 
-#Instalacja
-Zapisujemy skrypt pod dowolna nazwą np hazard.sh w katalogu np /opt/hazard (który okreslimy w skrypcie pod zmienną $scriptdir)
+Zapisujemy skrypt pod dowolna nazwą np hazard.sh w katalogu np /opt/hazard,  który określimy w skrypcie pod zmienną $scriptdir)
 
 Do pliku /etc/named.conf dopisujemy linię:
 
