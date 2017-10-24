@@ -40,7 +40,7 @@ function get_rejestr_domen_gier_hazardowych {
     cd $scriptdir
     mv $HazardDomainFile $HazardDomainFile.old
     echo Pobieram dane ze strony  $urlHAZARDXML
-    curl -s -G -L $urlHAZARDXML | grep AdresDomeny | awk -F"[<>]" '{print $3}' > $HazardDomainFile
+    curl -s -G -L $urlHAZARDXML | grep AdresDomeny | awk -F"[<>]" '{print $3}' | sort | uniq > $HazardDomainFile
 }
 
 function make_zone_file {
