@@ -76,6 +76,32 @@ function init_script {
     make_bind_conf
 }
 
+function hazard_cron {
+    if [ "$1" = "start" ]
+    then
+echo '# Run the fw.sh cron jobs
+SHELL=/bin/bash
+PATH=/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=""
+* */8 * * * root /opt/hazard/hazard.sh reload 2>&1
+' > /etc/cron.d/hazard
+    fi
+
+    if [ "$1" = "stop" ]
+    then
+        rm /etc/cron.d/hazard
+    fi
+}
+
+    stop ()
+    {
+         hazard_cron stop
+    }
+
+    start ()
+    {
+         hazard_cron start
+    }
 
     reload ()
     {
@@ -110,8 +136,7 @@ case "$1" in
         reload
     ;;
         *)
-        echo -e "\nUsage: hazard.sh init|reload"
+        echo -e "\nUsage: hazard.sh init|reload|stop|start"
     ;;
 
 esac
-
