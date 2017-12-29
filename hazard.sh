@@ -37,7 +37,7 @@ function make_conf_file {
 }
 
 function make_zone_file {
-    $TTL 3600
+echo'$TTL 3600
     @   IN  SOA     localhost. root.localhost. (
               2017070101  ;Serial
               3600        ;Refresh
@@ -135,6 +135,15 @@ case "$1" in
     'reload')
         reload
     ;;
+    
+     'stop')
+        stop
+    ;;
+    
+     'start')
+        start
+    ;;
+    
         *)
         echo -e "\nUsage: hazard.sh init|reload|stop|start"
     ;;
