@@ -44,16 +44,16 @@ function get_rejestr_domen_gier_hazardowych {
 }
 
 function make_zone_file {
-    echo '$TTL 3600' > $HazardDomainZone
-    echo '@   IN  SOA     localhost. root.localhost. (' >> $HazardDomainZone
-    echo '          2017070101  ;Serial' >> $HazardDomainZone
-    echo '          3600        ;Refresh' >> $HazardDomainZone
-    echo '          1800        ;Retry' >> $HazardDomainZone
-    echo '          604800      ;Expire' >> $HazardDomainZone
-    echo '          86400       ;Minimum TTL' >> $HazardDomainZone
-    echo '          )' >> $HazardDomainZone
-    echo '          NS      localhost.' >> $HazardDomainZone
-    echo "          A       $MFIPADDR" >> $HazardDomainZone
+    $TTL 3600
+    @   IN  SOA     localhost. root.localhost. (
+              2017070101  ;Serial
+              3600        ;Refresh
+              1800        ;Retry
+              604800      ;Expire
+              86400       ;Minimum TTL
+              )
+              NS      localhost.
+              A       $MFIPADDR' > $HazardDomainZone
 }
 
 function make_bind_conf {
