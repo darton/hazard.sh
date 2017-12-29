@@ -36,13 +36,6 @@ function make_conf_file {
     chown root.named $HazardBindConf
 }
 
-function get_rejestr_domen_gier_hazardowych {
-    cd $scriptdir
-    mv $HazardDomainFile $HazardDomainFile.old
-    echo Pobieram dane ze strony  $urlHAZARDXML
-    curl -s -G -L $urlHAZARDXML | grep AdresDomeny | awk -F"[<>]" '{print $3}' | sort | uniq > $HazardDomainFile
-}
-
 function make_zone_file {
     $TTL 3600
     @   IN  SOA     localhost. root.localhost. (
@@ -61,6 +54,13 @@ function make_bind_conf {
     while read domainname ; do
     echo "zone \"$domainname\" in { type master; file \"hazard.redirect\"; allow-update { none; }; }; ">> $HazardBindConf
     done < $HazardDomainFile
+}
+
+function get_rejestr_domen_gier_hazardowych {
+    cd $scriptdir
+    mv $HazardDomainFile $HazardDomainFile.old
+    echo Pobieram dane ze strony  $urlHAZARDXML
+    curl -s -G -L $urlHAZARDXML | grep AdresDomeny | awk -F"[<>]" '{print $3}' | sort | uniq > $HazardDomainFile
 }
 
 function compare_config {
