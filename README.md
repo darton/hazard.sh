@@ -12,9 +12,16 @@ Skrypt należy zainicjować:
 
 Wtedy skrypt utworzy odpowiednie pliki konfiguracyjne dla programu bind i na własne potrzeby oraz pobierze wykaz domen ze strony www Ministerstwa Finansów.
 
-Skrypt powinno się uruchamiać w cron np. co dwie godziny z parametrem "reload":
-0 */2 * * * root bash /opt/hazard/hazard.sh reload
+A następnie uruchomić poleceniem:
 
-Skrypt pobierze wtedy nową listę domen i porówna z tą, którą już posiada. jeśli nie będzie różnic skrypt zakończy działanie.
+/opt/hazard/hazard.sh start
+
+Które doda do cron zadanie uruchamiania cyklicznie skryptu z parametrem reload. Domyślnie zrobi to co 8 godzin.
+
+Skrypt  pobierze wtedy nową listę domen i porówna z tą, którą już posiada. jeśli nie będzie różnic skrypt zakończy działanie.
 W przeciwnym przypadku stworzy nowy plik z wykazem domen dla programu bind oraz wykona jego restart.
+
+Aby usunąć zadanie cron należy wydać polecenie:
+
+/opt/hazard/hazard.sh stop
 
