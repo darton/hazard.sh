@@ -24,7 +24,7 @@ HazardBindConf=/etc/named/named.conf.hazard-redirect
 #Adres ip serwera Ministerstwa Finansów na którym jest winietka informacyjna
 MFIPADDR=145.237.235.240
 
-[[ -d /opt/hazard ]] || mkdir /opt/hazard
+[[ -d $scriptdir ]] || mkdir $scriptdir
 
 # Deklaracja funkcji
 
