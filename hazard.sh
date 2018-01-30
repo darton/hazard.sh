@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# hazard.sh version 0.99
+# hazard.sh version 1.0
 #
 #  (C) Copyright 2017 Dariusz Kowalczyk
 #
