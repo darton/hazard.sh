@@ -2,7 +2,7 @@
 #
 # hazard.sh version 1.0
 #
-#  (C) Copyright 2017 Dariusz Kowalczyk
+#  Author : Dariusz Kowalczyk
 #
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License Version 2 as
