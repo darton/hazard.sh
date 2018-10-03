@@ -19,7 +19,7 @@ A następnie uruchomić poleceniem:
 
 /opt/hazard/hazard.sh start
 
-Które doda do cron zadanie uruchamiania cyklicznie skryptu z parametrem reload. Domyślnie zrobi to co 8 godzin.
+Które doda do cron zadanie uruchamiania cyklicznie skryptu z parametrem reload. Domyślnie skrypt bedzie uruchamiał to zadanie w cron co 8 godzin.
 
 Skrypt  pobierze wtedy nową listę domen i porówna z tą, którą już posiada. Jeśli nie będzie różnic, skrypt zakończy działanie.
 W przeciwnym przypadku stworzy nowy plik z aktualnym wykazem domen dla programu bind oraz wykona jego restart.
