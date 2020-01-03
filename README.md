@@ -1,5 +1,8 @@
+Skrypt pozwala wdrożyć ustawę hazardową 2017 w sieci ISP w oparciu o program BIND
 
-Skrypt napisany dla programu Bind dla dystrybucji Linux Centos 7
+Napisany został dla programu Bind, przetestowany na dystrybucji Linux Centos 7
+
+Instalacja
 
 Zapisujemy skrypt pod dowolna nazwą np hazard.sh w katalogu np /opt/hazard,  który określimy w skrypcie pod zmienną $scriptdir
 
