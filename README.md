@@ -1,4 +1,3 @@
-
 Skrypt pozwala wdrożyć ustawę hazardową w sieci ISP - to jest blokowanie domen w oparciu o rejestr http://hazard.mf.gov.pl/
 
 Napisany został dla programu Bind, przetestowany na dystrybucji Linux Centos 7
