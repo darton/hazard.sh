@@ -1,4 +1,4 @@
-Skrypt pozwala wdrożyć ustawę hazardową 2017 w sieci ISP w oparciu o program BIND
+Skrypt pozwala wdrożyć ustawę anty hazardową z 2017 w sieci ISP w oparciu o program BIND
 
 Napisany został dla programu Bind, przetestowany na dystrybucji Linux Centos 7
 
