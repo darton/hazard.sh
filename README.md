@@ -1,5 +1,5 @@
-Skrypt pozwala wdrożyć ustawę hazardową z 15.12.2016 to jest blokowanie domen w sieci ISP według rejestru blokowanych domen sporządzanaego przez MF od dnia 01.07.2017.
 
+Skrypt pozwala wdrożyć ustawę hazardową w sieci ISP - to jest blokowanie domen w oparciu o rejestr http://hazard.mf.gov.pl/
 
 Napisany został dla programu Bind, przetestowany na dystrybucji Linux Centos 7
 
