@@ -130,7 +130,7 @@ case "$1" in
 
     'init')
         init
-    echo 'Dodaj do pliku /etc/named/conf linię: include "/etc/named/named.conf.hazard-redirect";'
+    echo 'Dodaj do pliku /etc/named.conf linię: include "/etc/named/named.conf.hazard-redirect";'
     ;;
 
     'reload')
