@@ -39,7 +39,7 @@ function make_conf_file {
 }
 
 function make_zone_file {
-echo'$TTL 3600
+echo "\$TTL 3600
     @   IN  SOA     localhost. root.localhost. (
               2017070101  ;Serial
               3600        ;Refresh
@@ -48,7 +48,7 @@ echo'$TTL 3600
               86400       ;Minimum TTL
               )
               NS      localhost.
-              A       $MFIPADDR' > $HazardDomainZone
+              A       $MFIPADDR" > $HazardDomainZone
 }
 
 function make_bind_conf {
