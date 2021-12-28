@@ -46,8 +46,8 @@ echo "\$TTL 2H
               86400     ;Retry
               2419200   ;Expire
               604800 )  ;Minimum TTL
-@   IN  NS  localhost.
-@   IN  A   $MFIPADDR" > $HazardDomainZone
+    NS  localhost.
+    A   $MFIPADDR" > $HazardDomainZone
 }
 
 function make_bind_conf {
