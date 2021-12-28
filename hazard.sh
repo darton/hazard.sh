@@ -1,4 +1,5 @@
 #!/bin/bash
+
 #
 # hazard.sh version 1.0
 #
