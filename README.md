@@ -8,13 +8,14 @@ Zapisujemy skrypt pod dowolna nazwą np hazard.sh w katalogu np /opt/hazard,  kt
 
 curl -sS https://raw.githubusercontent.com/darton/hazard.sh/master/hazard.sh > /opt/hazard/hazard.sh
 
-Do pliku /etc/named.conf dopisujemy linię:
+Do pliku /etc/named.conf (Centos) lub /etc/bind/named.conf (Debian) dopisujemy linię:
 
-include "/etc/named/named.conf.hazard-redirect";
+include "/etc/named/hazard.conf"; (Centos)
+include "/etc/bind/hazard.conf"; (Debian)
 
 Skrypt należy zainicjować:
 
-/opt/hazard/hazard.sh init
+/opt/hazard/hazard.sh initialize
 
 Wtedy skrypt utworzy odpowiednie pliki konfiguracyjne dla programu bind i na własne potrzeby oraz pobierze wykaz domen ze strony www Ministerstwa Finansów.
 
