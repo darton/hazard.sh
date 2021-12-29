@@ -46,6 +46,9 @@ oraz w sekcji "options {}"  dodajemy
 response-policy { zone "rpz"; };
 ```
 
+Dla Ubuntu 20.04 LTS ustawienia sekcji options znajdują się w osobnym pliku named.conf.options 
+
+
 ## Uruchomienie
 Skrypt należy zainicjować:
 
