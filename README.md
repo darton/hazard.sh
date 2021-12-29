@@ -1,12 +1,16 @@
+##hazard.sh
+
 Skrypt pozwala wdrożyć ustawę hazardową w sieci ISP - to jest blokowanie domen w oparciu o rejestr http://hazard.mf.gov.pl/
 
 Napisany został dla programu Bind, przetestowany na dystrybucji Linux Centos 7 oraz Debian 11
 
-Instalacja
+#Instalacja
 
 Zapisujemy skrypt pod dowolna nazwą np hazard.sh w katalogu np /opt/hazard,  który określimy w skrypcie pod zmienną $scriptdir
 
+```
 curl -sS https://raw.githubusercontent.com/darton/hazard.sh/master/hazard.sh > /opt/hazard/hazard.sh
+```
 
 Do pliku /etc/named.conf (Centos) lub /etc/bind/named.conf (Debian) dopisujemy linię:
 
@@ -15,13 +19,17 @@ include "/etc/bind/hazard.conf"; (Debian)
 
 Skrypt należy zainicjować:
 
+```
 /opt/hazard/hazard.sh initialize
+```
 
 Wtedy skrypt utworzy odpowiednie pliki konfiguracyjne dla programu bind i na własne potrzeby oraz pobierze wykaz domen ze strony www Ministerstwa Finansów.
 
 A następnie uruchomić poleceniem:
 
+```
 /opt/hazard/hazard.sh start
+```
 
 Które doda do cron zadanie uruchamiania cyklicznie skryptu z parametrem reload. Domyślnie skrypt bedzie uruchamiał to zadanie w cron co 8 godzin.
 
@@ -30,5 +38,6 @@ W przeciwnym przypadku stworzy nowy plik z aktualnym wykazem domen dla programu 
 
 Aby usunąć zadanie z cron należy wydać polecenie:
 
+```
 /opt/hazard/hazard.sh stop
-
+```
