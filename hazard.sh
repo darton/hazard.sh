@@ -16,66 +16,103 @@
 
 PATH=/sbin:/usr/sbin/:/bin:/usr/sbin:$PATH
 
-scriptdir=/opt/hazard
-urlHAZARDXML=https://hazard.mf.gov.pl/api/Register
-HazardDomainFile=/opt/hazard/hazard.domains
-HazardDomainZone=/var/named/hazard.redirect
-HazardBindConf=/etc/named/named.conf.hazard-redirect
+OSRelease=$(awk -F\= '/^ID=/ {print $2}' /etc/os-release)
 
-#Adres ip serwera Ministerstwa Finansów na którym jest winietka informacyjna
+scriptdir=/opt/hazard
+HazardDomainFile=/opt/hazard/hazard.domains
+
+#URL serwera www Ministerstwa Finansów na którym jest plik z domenami
+urlHAZARDXML=https://hazard.mf.gov.pl/api/Register
+
+#Adres IP serwera Ministerstwa Finansów na którym jest winietka informacyjna
 MFIPADDR=145.237.235.240
 
+if [ $OSRelease = "debian" ]; then
+    HazardDomainZone=/etc/bind/hazard_rpz.db
+    HazardZoneFile=/etc/bind/hazard.conf
+fi
+
+if [ $OSRelease = "\"centos\"" ]; then
+    HazardDomainZone=/var/named/hazard_rpz.db
+    HazardZoneFile=/etc/named/hazard.conf
+fi
+
 [[ -d $scriptdir ]] || mkdir $scriptdir
+
+
 
 # Deklaracja funkcji
 
 function make_conf_file {
-
+    touch $HazardZoneFile
+    chown root.named $HazardZoneFile
+    chmod 640 $HazardZoneFile
+    echo 'zone "rpz" { type master; file "hazard_rpz.db"; };' > $HazardZoneFile
     touch $HazardDomainFile
+    touch $HazardDomainFile.old
     touch $HazardDomainZone
     chown root.named $HazardDomainZone
-    touch $HazardBindConf
-    chown root.named $HazardBindConf
+    chmod 640 $HazardDomainZone
 }
 
+
 function make_zone_file {
+    Serial=$(date '+%s')
+    yes | cp -f /dev/null $HazardDomainZone
 echo "\$TTL 2H
 @   IN  SOA localhost. root.localhost. (
-              1         ;Serial
+              $Serial   ;Serial
               604800    ;Refresh
               86400     ;Retry
               2419200   ;Expire
               604800 )  ;Minimum TTL
-    NS  localhost.
-    A   $MFIPADDR" > $HazardDomainZone
-}
+@   IN  NS  localhost.
+@   IN  A   $MFIPADDR" > $HazardDomainZone
 
-function make_bind_conf {
-    yes | cp -f /dev/null $HazardBindConf
     while read domainname ; do
-    echo "zone \"$domainname\" in { type master; file \"hazard.redirect\"; allow-update { none; }; }; ">> $HazardBindConf
+    echo "$domainname CNAME rpz." >> $HazardDomainZone
     done < $HazardDomainFile
 }
+
 
 function get_rejestr_domen_gier_hazardowych {
     cd $scriptdir
     mv $HazardDomainFile $HazardDomainFile.old
-    echo Pobieram dane ze strony  $urlHAZARDXML
-    curl -s -G -L $urlHAZARDXML | awk -F"[<>]" '/AdresDomeny/ {print $3}' | sort | uniq > $HazardDomainFile
+    echo "Pobieram dane ze strony  $urlHAZARDXML"
+    curl -s -G -L $urlHAZARDXML | awk -F"[<>]" '/AdresDomeny/ {print $3}' | sort -u > $HazardDomainFile
 }
+
 
 function compare_config {
     diff -q $HazardDomainFile $HazardDomainFile.old > /tmp/hazard.diff
 }
 
-function init_script {
-    echo "Tworzę pliki konfiguracyjne dla programu Bind"
-    echo ""
+
+function initialize {
+    echo
+    echo "Tworzę pliki konfiguracyjne dla programu BIND"
+    echo
     make_conf_file
-    make_zone_file
     get_rejestr_domen_gier_hazardowych
-    make_bind_conf
+    make_zone_file
+
+    if [ $OSRelease = "\"debian\"" ]; then
+        echo 'Aby zainstalować wykonaj czynności:'
+        echo ' Dodaj na końcu pliku /etc/bind/named.conf:'
+        echo '  include "/etc/bind/hazard.conf";'
+        echo ' Dodaj do pliku /etc/bind/named.conf w sekcji Options:'
+        echo '  response-policy { zone "rpz"; };'
+    fi
+
+    if [ $OSRelease = "\"centos\"" ]; then
+        echo 'Aby zainstalować wykonaj czynności:'
+        echo ' Dodaj na końcu pliku /etc/named.conf:'
+        echo '  include "/etc/named/hazard.conf";'
+        echo ' Dodaj do pliku /etc/named.conf w sekcji Options:'
+        echo '  response-policy { zone "rpz"; };'
+    fi
 }
+
 
 function hazard_cron {
     if [ "$1" = "start" ]
@@ -94,59 +131,57 @@ MAILTO=""
     fi
 }
 
-    stop ()
-    {
+
+function stop {
          hazard_cron stop
-    }
+}
 
-    start ()
-    {
+
+function start {
          hazard_cron start
-    }
+}
 
-    reload ()
-    {
+
+function reload {
         get_rejestr_domen_gier_hazardowych
         compare_config
     if [ -s "/tmp/hazard.diff" ]
     then
-        echo Pliki sie róznią przełądowuję konfigurację
-        make_bind_conf
+        echo "Pliki sie róznią przełądowuję konfigurację"
+        make_zone_file
         systemctl restart named.service
     else
-        echo Nowa konfiguracja jest identyczna nic nie robię
+        echo "Nowa konfiguracja jest identyczna nic nie robię"
     fi
-    }
+}
 
 
-    init ()
-    {
-         init_script
-    }
 
 # Program główny
-
 case "$1" in
 
-    'init')
-        init
-    echo 'Dodaj do pliku /etc/named.conf linię: include "/etc/named/named.conf.hazard-redirect";'
+    'initialize')
+        initialize
     ;;
 
     'reload')
         reload
     ;;
-    
+
      'stop')
         stop
     ;;
-    
+
      'start')
         start
     ;;
-    
+
         *)
-        echo -e "\nUsage: hazard.sh init|reload|stop|start"
+        echo -e "\nUsage: hazard.sh initialize|reload|start|stop\n"
+        echo -e " hazard.sh initialize - tworzy pliki konfiguracyjne, pobiera plik z domenami oraz wyświetla czynności konieczne do zakończenia procesu instalacji"
+        echo -e " hazard.sh reload - pobiera plik z domenami ze strony MF, tworzy plik strefy RPZ oraz restartuje program Bind"
+        echo -e " hazard.sh start - dodaje do Cron zadanie cykliczne wykonywania skryptu hazard.sh z opcją reload"
+        echo -e " hazard.sh stop - usuwa z Cron zadanie cyklicznego wykonywania skryptu hazard.sh"
     ;;
 
 esac
