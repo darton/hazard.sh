@@ -20,10 +20,16 @@ chmod u+x /opt/hazard/hazard.sh
 
 Na końcu pliku /etc/named.conf (Centos) lub /etc/bind/named.conf (Debian) dopisujemy linię:
 
-```
-include "/etc/named/hazard.conf"; (Centos)
+dla Centos:
 
-include "/etc/bind/hazard.conf"; (Debian)
+```
+include "/etc/named/hazard.conf"; 
+```
+
+dla Debian
+
+```
+include "/etc/bind/hazard.conf"; 
 ```
 
 oraz w sekcji "options {}"  dodajemy
