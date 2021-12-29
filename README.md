@@ -39,11 +39,17 @@ A następnie uruchomić poleceniem:
 
 Które doda do cron zadanie uruchamiania cyklicznie skryptu z parametrem reload. Domyślnie skrypt bedzie uruchamiał to zadanie w cron co 8 godzin.
 
-Skrypt  pobierze wtedy nową listę domen i porówna z tą, którą już posiada. Jeśli nie będzie różnic, skrypt zakończy działanie.
-W przeciwnym przypadku stworzy nowy plik z aktualnym wykazem domen dla programu bind oraz wykona jego restart.
-
 Aby usunąć zadanie z cron należy wydać polecenie:
 
 ```
 /opt/hazard/hazard.sh stop
 ```
+
+Aby ręcznie aktualizować plik strefy należy wykonać polecenie:
+
+```
+/opt/hazard/hazard.sh reload
+```
+
+Skrypt  pobierze wtedy nową listę domen i porówna z tą, którą już posiada. Jeśli nie będzie różnic, skrypt zakończy działanie.
+W przeciwnym przypadku stworzy nowy plik z aktualnym wykazem domen dla programu bind oraz wykona jego restart.
