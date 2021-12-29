@@ -26,7 +26,7 @@ Ustawiamy prawo do uruchamiania skryptu
 chmod u+x /opt/hazard/hazard.sh
 ```
 
-Na końcu pliku /etc/named.conf (Centos) lub /etc/bind/named.conf (Debian) dopisujemy linię:
+Na końcu pliku /etc/named.conf (Centos) lub /etc/bind/named.conf (Debian,Ubuntu) dopisujemy linię:
 
 dla Centos:
 
