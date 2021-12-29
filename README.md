@@ -59,13 +59,13 @@ Skrypt należy zainicjować:
 Wtedy skrypt utworzy odpowiednie pliki konfiguracyjne dla programu bind i na własne potrzeby oraz pobierze wykaz domen ze strony www Ministerstwa Finansów.
 Skrypt nie zmienia niczego w plikach których sam nie tworzy. 
 
-A następnie uruchomić poleceniem:
+A następnie uruchomić skrypt z opcją start:
 
 ```
 /opt/hazard/hazard.sh start
 ```
 
-Które doda do cron zadanie uruchamiania cyklicznie skryptu z parametrem reload. Domyślnie skrypt bedzie uruchamiał to zadanie w cron co 8 godzin.
+Polecenie to doda do cron zadanie uruchamiania cyklicznie skryptu z parametrem reload. Domyślnie skrypt bedzie uruchamiał to zadanie w cron co 8 godzin.
 
 Aby usunąć zadanie z cron należy wydać polecenie:
 
