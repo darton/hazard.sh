@@ -27,7 +27,7 @@ urlHAZARDXML=https://hazard.mf.gov.pl/api/Register
 #Adres IP serwera Ministerstwa Finansów na którym jest winietka informacyjna
 MFIPADDR=145.237.235.240
 
-if [ $OSRelease = "debian" ]; then
+if [ $OSRelease = "debian" ] || [ $OSRelease = "ubuntu" ]; then
     HazardDomainZone=/etc/bind/hazard_rpz.db
     HazardZoneFile=/etc/bind/hazard.conf
 fi
@@ -45,14 +45,21 @@ fi
 
 function make_conf_file {
     touch $HazardZoneFile
-    chown root.named $HazardZoneFile
-    chmod 640 $HazardZoneFile
-    echo 'zone "rpz" { type master; file "hazard_rpz.db"; };' > $HazardZoneFile
+    touch $HazardDomainZone
     touch $HazardDomainFile
     touch $HazardDomainFile.old
-    touch $HazardDomainZone
-    chown root.named $HazardDomainZone
     chmod 640 $HazardDomainZone
+    chmod 640 $HazardZoneFile
+
+    if [ $OSRelease = "\"centos\"" ]; then
+        chown root.named $HazardZoneFile
+        chown root.named $HazardDomainZone
+    fi
+    if [ $OSRelease = "debian" ] || [ $OSRelease = "ubuntu" ]; then
+        chown root.bind $HazardZoneFile
+        chown root.bind $HazardDomainZone
+    fi
+    echo 'zone "rpz" { type master; file "hazard_rpz.db"; };' > $HazardZoneFile
 }
 
 
