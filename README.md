@@ -12,6 +12,12 @@ Zapisujemy skrypt pod dowolna nazwą np hazard.sh w katalogu np /opt/hazard,  kt
 curl -sS https://raw.githubusercontent.com/darton/hazard.sh/master/hazard.sh > /opt/hazard/hazard.sh
 ```
 
+Ustawiamy atrybut wykonywalności
+
+```
+chmod u+x /opt/hazard/hazard.sh
+```
+
 Na końcu pliku /etc/named.conf (Centos) lub /etc/bind/named.conf (Debian) dopisujemy linię:
 
 include "/etc/named/hazard.conf"; (Centos)
