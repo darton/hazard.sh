@@ -85,7 +85,7 @@ W przeciwnym przypadku stworzy nowy plik z aktualnym wykazem domen dla programu 
 
 ## Deinstalacja
 
-Usuwamy lub komentujemy na końcu pliku /etc/named.conf (Centos) lub /etc/bind/named.conf (Debian,Ubuntu) dopisujemy linię:
+Usuwamy lub komentujemy na końcu pliku /etc/named.conf (Centos) lub /etc/bind/named.conf (Debian,Ubuntu) linię:
 
 dla Centos:
 
@@ -113,4 +113,17 @@ Wykonujemy komendę:
 /opt/hazard/hazard.sh stop
 ```
 
+a następnie restartujemy program BIND komendą
+
+dla CentOS'a
+
+```
+systemcl restart named 
+```
+
+dla Debiana
+
+```
+systemcl restart bind9 
+```
 
