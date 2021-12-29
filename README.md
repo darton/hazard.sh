@@ -57,6 +57,7 @@ Skrypt należy zainicjować:
 ```
 
 Wtedy skrypt utworzy odpowiednie pliki konfiguracyjne dla programu bind i na własne potrzeby oraz pobierze wykaz domen ze strony www Ministerstwa Finansów.
+Skrypt nie zmienia niczego w plikach których sam nie tworzy. 
 
 A następnie uruchomić poleceniem:
 
