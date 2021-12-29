@@ -81,3 +81,36 @@ Aby ręcznie aktualizować plik strefy należy wykonać polecenie:
 
 Skrypt  pobierze wtedy nową listę domen i porówna z tą, którą już posiada. Jeśli nie będzie różnic, skrypt zakończy działanie.
 W przeciwnym przypadku stworzy nowy plik z aktualnym wykazem domen dla programu bind oraz wykona jego restart.
+
+
+## Deinstalacja
+
+Usuwamy lub komentujemy na końcu pliku /etc/named.conf (Centos) lub /etc/bind/named.conf (Debian,Ubuntu) dopisujemy linię:
+
+dla Centos:
+
+```
+//include "/etc/named/hazard.conf"; 
+```
+
+dla Debian
+
+```
+//include "/etc/bind/hazard.conf"; 
+```
+
+oraz w sekcji "options {}" usuwamy lub komentujemy linię
+
+```
+//response-policy { zone "rpz"; };
+```
+
+Dla Ubuntu 20.04 LTS ustawienia sekcji options znajdują się w osobnym pliku named.conf.options 
+
+Wykonujemy komendę:
+
+```
+/opt/hazard/hazard.sh stop
+```
+
+
