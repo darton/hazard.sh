@@ -4,7 +4,7 @@ Skrypt pozwala wdrożyć ustawę hazardową w sieci ISP - to jest blokowanie dom
 
 Napisany został dla programu Bind, przetestowany na dystrybucji Linux Centos 7 oraz Debian 11
 
-#I nstalacja
+# Instalacja
 
 Zapisujemy skrypt pod dowolna nazwą np hazard.sh w katalogu np /opt/hazard,  który określimy w skrypcie pod zmienną $scriptdir
 
@@ -23,6 +23,7 @@ oraz w sekcji "options {}"  dodajemy
 response-policy { zone "rpz"; };
 ```
 
+# Uruchomienie
 Skrypt należy zainicjować:
 
 ```
