@@ -30,11 +30,11 @@ MFIPADDR=145.237.235.240
 if [ $OSRelease = "debian" ] || [ $OSRelease = "ubuntu" ]; then
     HazardDomainZone=/etc/bind/hazard_rpz.db
     HazardZoneFile=/etc/bind/hazard.conf
-fi
-
-if [ $OSRelease = "\"centos\"" ]; then
+elif [ $OSRelease = "\"centos\"" ]; then
     HazardDomainZone=/var/named/hazard_rpz.db
     HazardZoneFile=/etc/named/hazard.conf
+else
+    exit 0
 fi
 
 [[ -d $scriptdir ]] || mkdir $scriptdir
