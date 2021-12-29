@@ -12,7 +12,7 @@ Zapisujemy skrypt pod dowolna nazwą np hazard.sh w katalogu np /opt/hazard,  kt
 curl -sS https://raw.githubusercontent.com/darton/hazard.sh/master/hazard.sh > /opt/hazard/hazard.sh
 ```
 
-Ustawiamy atrybut wykonywalności
+Ustawiamy prawo do uruchamiania skryptu
 
 ```
 chmod u+x /opt/hazard/hazard.sh
