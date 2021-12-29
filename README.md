@@ -17,10 +17,11 @@ Do pliku /etc/named.conf (Centos) lub /etc/bind/named.conf (Debian) dopisujemy l
 include "/etc/named/hazard.conf"; (Centos)
 include "/etc/bind/hazard.conf"; (Debian)
 
-oraz w sekcji options dodajemy
+oraz w sekcji "options {}"  dodajemy
 
+```
 response-policy { zone "rpz"; };
-
+```
 
 Skrypt należy zainicjować:
 
