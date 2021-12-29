@@ -6,10 +6,10 @@ Napisany został dla programu Bind, przetestowany na dystrybucji Linux Centos 7 
 
 ## Instalacja
 
-Tworzymy katalog 
+Jako administrator tworzymy katalog 
 
 ```
-mkdir /opt/hazard
+sudo mkdir /opt/hazard
 ```
 
 Pobieramy skrypt ze strony
