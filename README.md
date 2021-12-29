@@ -1,10 +1,10 @@
-##hazard.sh
+## hazard.sh
 
 Skrypt pozwala wdrożyć ustawę hazardową w sieci ISP - to jest blokowanie domen w oparciu o rejestr http://hazard.mf.gov.pl/
 
 Napisany został dla programu Bind, przetestowany na dystrybucji Linux Centos 7 oraz Debian 11
 
-#Instalacja
+#I nstalacja
 
 Zapisujemy skrypt pod dowolna nazwą np hazard.sh w katalogu np /opt/hazard,  który określimy w skrypcie pod zmienną $scriptdir
 
