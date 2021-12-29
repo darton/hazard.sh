@@ -152,17 +152,19 @@ function start {
 function reload {
         get_rejestr_domen_gier_hazardowych
         compare_config
-    if [ -s "/tmp/hazard.diff" ]
-    then
+    if [ -s "/tmp/hazard.diff" ]; then
         echo "Pliki sie róznią przełądowuję konfigurację"
         make_zone_file
-        systemctl restart named.service
+        if [ $OSRelease = "\"centos\"" ]; then
+            systemctl restart named.service
+        fi
+        if [ $OSRelease = "debian" ] || [ $OSRelease = "ubuntu" ]; then
+            systemctl restart bind9.service
+        fi
     else
         echo "Nowa konfiguracja jest identyczna nic nie robię"
     fi
 }
-
-
 
 # Program główny
 case "$1" in
