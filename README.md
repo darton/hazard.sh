@@ -6,7 +6,13 @@ Napisany został dla programu Bind, przetestowany na dystrybucji Linux Centos 7 
 
 ## Instalacja
 
-Zapisujemy skrypt pod dowolna nazwą np hazard.sh w katalogu np /opt/hazard,  który określimy w skrypcie pod zmienną $scriptdir
+Tworzymy katalog 
+
+```
+mkdir /opt/hazard
+```
+
+Pobieramy skrypt ze strony
 
 ```
 curl -sS https://raw.githubusercontent.com/darton/hazard.sh/master/hazard.sh > /opt/hazard/hazard.sh
