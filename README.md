@@ -9,7 +9,7 @@ Napisany został dla programu Bind, przetestowany na dystrybucji Linux Centos 7 
 Jako administrator tworzymy katalog 
 
 ```
-sudo mkdir /opt/hazard
+mkdir /opt/hazard
 ```
 
 Pobieramy skrypt ze strony
