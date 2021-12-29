@@ -6,7 +6,9 @@ Napisany został dla programu Bind, przetestowany na dystrybucji Linux Centos 7 
 
 ## Instalacja
 
-Jako administrator tworzymy katalog 
+Jako administrator:
+
+tworzymy katalog 
 
 ```
 mkdir /opt/hazard
@@ -15,7 +17,7 @@ mkdir /opt/hazard
 Pobieramy skrypt ze strony
 
 ```
-curl -sS https://raw.githubusercontent.com/darton/hazard.sh/master/hazard.sh > /opt/hazard/hazard.sh
+curl -sS https://raw.githubusercontent.com/darton/hazard.sh/master/hazard.sh | tee /opt/hazard/hazard.sh
 ```
 
 Ustawiamy prawo do uruchamiania skryptu
